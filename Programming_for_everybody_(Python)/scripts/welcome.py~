@@ -1,0 +1,13 @@
+# Programita 1
+nam = raw_input("What's your name?")
+print "Welcome",nam
+
+# Programita 2
+inp = raw_input("Europeen floor?")
+usf = int (inp) +1
+print "US floor",usf
+
+# Programita 3
+horas = raw_input("Horas:?")
+rate = raw_input("Precio por hora?:")
+print "pay", int(horas*rate)
