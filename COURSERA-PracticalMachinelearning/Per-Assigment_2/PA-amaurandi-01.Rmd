@@ -1,0 +1,258 @@
+---
+title: 'Assignment: Prediction Assignment Writeup'
+author: "Antonio Maurandi López"
+date: "21 de junio de 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, echo=T, results="asis", cahe=TRUE)
+options(scipen = 1, digits = 3)  # set default digits
+
+library(pander)
+library(caret)
+
+library(devtools)
+# install_github("ujjwalkarn/xda")
+library(xda)
+
+library( "randomForest" )
+
+# library(xtable)
+# library("lattice")
+```
+
+Using devices such as _Jawbone Up_, _Nike FuelBand_, and _Fitbit_ it is now possible to collect a large amount of data about personal activity relatively inexpensively. 
+Our goal is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. 
+We will use data  data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants to predict  the "classe" variable.
+
+# Loading and processing the data
+
+
+Exploration of the data.
+
+```{r, cache=TRUE}
+
+# download data from the source url
+filepath     <- "XXXXX"
+filepath     <- "pml-training.csv"
+train <- read.table(filepath,  sep="," , header=T, dec=".")
+filepath     <- "XXX"
+filepath     <- "pml-testing.csv"
+test <- read.table(filepath,  sep="," , header=T, dec=".")
+```
+
+## Missing values: `NA` 
+
+There are variables with a lot of `NA` values, we will use only those variables which are not `NA` always, let set the criteria at 80% of data available, not `NA`.
+
+```{r}
+n         <- nrow(train)
+f.numofna <- function (vector){
+    return( sum(is.na (vector)))
+}
+
+x       <- as.vector(apply(train, 2, f.numofna)/n)
+pander(table(x), caption = "Number of variables with a percentaje of missiing values: `0%` or `97%`")
+varsnona <- (x<0.8)
+
+n1    <- length(names(train) )
+train <- train[ ,varsnona ]
+test  <- test[  ,varsnona ]
+
+# kk<-lapply(train,data.class)
+# pander(kk)
+n2 <- length( names(train) )
+```
+
+We will keep `r n2` variables instead of the original `r n1` variables.
+
+## Outcome variable `classe`
+
+It is interesting to check if there are any class more presnet tahn others
+```{r}
+tt<-table(train$classe)
+pander::pander( tt
+                ,caption="absolute frecuency of classes of variebl classe" )
+tt<- prop.table(tt)*100
+pander::pander(tt
+               , caption="percentage table" )
+
+```
+
+We can see that there are 5 different clasifications and that all of them are arround 16% and 29% of the total data available.
+
+
+```{r, results="asis"}
+pander(numSummary( train )[ ,-c(7:17)]
+       , caption="Preliminary descriptives of numerical variables in the trainning dataset.")
+```
+
+
+```{r, results="asis"}
+pander( charSummary(train)
+        , caption="Preliminary descriptives of non numerical variables in the trainning dataset.")
+```
+
+
+## Standaritation
+
+It's interestilng to _scale_ and _center_ the data  it to  get models less influenced by the diferent scale of the predictor variables.
+
+```{r}
+procValues <- preProcess( train, method = c("center", "scale") )
+trainN     <- predict( procValues, train )
+testN      <- predict( procValues, test )
+```
+
+
+We will work with the data set witout the classification variable `classe`.
+
+
+
+```{r ctosfinales}
+trainN <- trainN[ ,-c(1:2) ] # delete the id var and username
+testN  <- testN[  ,-c(1:2) ]
+
+
+myclasse     <- trainN$classe  # classification/outcome variable
+trainN       <- subset(trainN, select = -c(classe) )    
+testN        <- subset(testN , select = -c(problem_id) ) 
+```
+
+
+There are varibles thar are not of the same type (class) in both datasets
+```{r probClases}
+# problema con las classes de las variables aml! 20160621
+k1 <- sapply( trainN, class)
+k2 <- sapply( testN, class )
+kk <- data.frame( k1, k2, k0 = NA , stringsAsFactors = FALSE )
+# str(kk)
+# head(kk)
+for (i in 1: nrow(kk)){
+    if (kk$k1[i]==kk$k2[i]) { kk$k0[i] <- TRUE }    
+    else{ kk$k0[i]<- FALSE}
+}
+length(rownames(kk))
+# rownames(kk)[kk$k0]
+# there are variaboles thar are not of the same type (class) in both datasets
+pander(kk[kk$k0==FALSE,1:2], caption="Variables in datasets thar are not of the same data class.")
+
+
+vasrthatareidenticalinclass <- rownames(kk)[kk$k0]  # in boyh dataframes
+trainN <- trainN [ ,kk$k0]
+trainN       <- subset(trainN, select = vasrthatareidenticalinclass)    
+testN        <- subset(testN , select = vasrthatareidenticalinclass) 
+
+```
+We will work only with those variables that have the same class in both datasets: `r vasrthatareidenticalinclass`.
+
+
+Still there are two variables with typoe `factor`: `r names(trainN[,sapply(trainN,is.factor)])`. We will delete them because diferences in number of levels and `NA` valyues are usually a problem for random forest.
+
+```{r}
+# qitamos los factores
+names(trainN[,sapply(trainN,is.factor)])
+names(testN[,sapply(testN,is.factor)])
+# trainN <- trainN[,-c(sapply(trainN,is.factor))]
+# testN <- testN[,-c(sapply(testN,is.factor))]
+
+ trainN <- trainN[ ,-c(3:4) ]
+ testN  <- testN[  ,-c(3:4) ]
+```
+
+
+Now we have a trainning data set with `r ncol(trainN)` variables and `r nrow(trainN)` observations. 
+
+- **Variables in the model**: _`r names(trainN)`_.
+
+
+# Fit a  Model
+
+## Cross validation
+
+We will use a 60% training set, 40% prove set of the total data set with clsification (`classe`).
+
+```{r}
+set.seed( pi )
+casostest1  <- createDataPartition( myclasse, p=0.6, list = FALSE )
+
+train1      <- trainN [ casostest1, ]  # trainning data set
+train2      <- trainN [-casostest1, ] # proving data set
+```
+
+
+We will use to build a model a trainning data set of `r nrow(train1)` observations that is the 60% of the data in the origibal trainning dataset. We will test the model in a test data set of `r nrow(train2)`  that is the remaining 40% of the data of the originla trainning dataset.
+
+
+We will use the  function `randomForest()` from `randomForest` package   to fit the model.
+
+```{r RandomForest_Model, cache=TRUE}
+# library( "randomForest" )
+#  This function can not work with `factor` variables thar have more than 54 levels
+# , so we will limitate the factor to have no mor than 10 levels
+# , using an _ad hoc_ function `flevels()`.
+# so we create a function to select only those fcator variables
+# with less than a certain numeber (nl) of levels
+# mynl <- 9
+# flevels <- function(v, nl = mynl ){
+#     if (nlevels(v)< nl) return (TRUE)
+#     else return(FALSE)
+# }
+system.time(
+     rfo2 <- randomForest( myclasse[casostest1] ~. , data = train1
+    # rfo2 <- randomForest( myclasse[casostest1] ~. , data = train1[,sapply(train1, flevels)]
+                     # , mtry = 7  # el default es raiz(p)/3, donde p es el num de vars
+                     # , subset = train
+                     , importance = TRUE ) 
+    )
+
+# varsinmodel <- names( train1[,sapply(train1, flevels)] )
+```
+
+
+
+```{r}
+pander( importance( rfo2 ) )
+```
+
+
+```{r, fig.cap="plot of importance measurement of variables in the model."}
+varImpPlot( rfo2 )
+```
+
+
+## Testing the model with `train2` (40% of the trainning data)
+
+Now we will test or model with the trainning data set that reprsenetn de 40% of the original trainning data set: `train2`.
+
+```{r}
+train2_prediction <- predict( rfo2, newdata = train2 )
+kk                <- confusionMatrix( train2_prediction, myclasse[-casostest1] )
+pander(kk$overall[1:2], caption = "overall." )
+pander(kk$table       , caption = "Confusion table." )
+pander(t(kk$byClass)  , caption = "model parameters by class." )
+# confusionMatrix(train2_prediction, myclasse[-casostest1])$overall['Accuracy']
+```
+
+
+We obtain a higth accuracy `r confusionMatrix(train2_prediction, myclasse[-casostest1])$overall['Accuracy']`, so we may think that we have a goog model for prediction.
+
+
+
+# Clasification of new cases
+
+
+```{r prediccion, eval=TRUE}
+testN_prediction <- predict(rfo2, newdata=testN)
+pander(data.frame(test$user_name,testN_prediction))
+```
+
+
+
+# `Sessioninfo()`
+
+```{r}
+sessionInfo()
+```
+

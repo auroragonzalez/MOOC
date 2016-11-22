@@ -1,0 +1,138 @@
+---
+title: "Peer_Asignment"
+author: "Aurora González Vidal"
+date: "`r date()`"
+output: pdf_document
+---
+
+```{r}
+library("caret")
+library("xtable")
+```
+
+
+In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participant.
+
+The goal of your project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases. 
+
+# Loading the data
+
+```{r}
+train <- read.table("pml-training.csv", header = T, sep = ",", dec=".")
+test <- read.table("pml-testing.csv", header = T, sep = ",", dec=".")
+```
+
+
+# Missing values treatment
+
+There are some attributes that are `NA` for all observations in both sets so we are going to discard those and create new train and test sets:
+
+```{r, results='hide'}
+sapply(test, function(x) sum(is.na(x)))/nrow(test)*100
+sapply(train, function(x) sum(is.na(x)))/nrow(train)*100
+
+index <- as.vector(sapply(train, function(x) sum(is.na(x)))/nrow(test)*100!=0)
+
+train2 <- train[!index]
+test2 <- test[!index]
+```
+
+
+
+# Standarization of variables
+
+Variables are measured in different scales so in order to avoid that they weight different we have to standarize them:
+
+```{r}
+procValues <- preProcess(train2, method = c("center", "scale"))
+trainNormalized <- predict(procValues, train2)
+testNormalized <- predict(procValues, test2)
+```
+
+```{r}
+inputs_train <- subset(trainNormalized, select = -c(classe))   # get rid of the classe
+inputs_test <- subset(testNormalized, select = -c(problem_id))  # get rid of the id
+output_train <- trainNormalized["classe"]
+```
+
+# Reduction of dimensionality
+
+There are still too many variables:
+
+```{r}
+dim(inputs_train)
+```
+
+so we are going to use PCA in order to reduce the dimensionality of the problem.
+
+```{r}
+precPCA <- preProcess(inputs_train[,1:ncol(inputs_train)-1], method = "pca",thresh = 0.9)
+inputs_trainPCA <- predict(precPCA,  inputs_train )
+inputs_testPCA <- predict(precPCA, inputs_test )
+```
+
+# Cross validation, building the model
+
+The train set is going to be splitted itself into a train and a test set in order to evaluate the results of the model. So, now we have `train3` and `test3` sets.
+
+```{r}
+set.seed(1234)
+ctrl <- trainControl(method = "cv", repeats = 5
+                     , returnResamp = "all")
+
+nTraining <- as.integer(nrow(inputs_trainPCA) * 0.6)
+indices <- sample(1:nrow(inputs_trainPCA), nTraining)
+
+train3 <- cbind(inputs_trainPCA[indices,], classe = output_train[indices,])
+test3 <- cbind(inputs_trainPCA[-indices,], classe = output_train[-indices,])
+```
+
+
+We use the `train3` set when looking for the best hyperparameters. We define a grid of feasible optimal parameters. We save the model.
+
+```{r, eval=F}
+
+paramGrid <- expand.grid(.mtry = c(2,3,4,5,10,15))
+set.seed(1234)
+rf.final <- caret::train(
+  classe~., 
+  data = train3[38:59], # Inputs + Outputs
+  method = "rf",
+  metric = "Accuracy", # Metric to evaluate
+  tuneGrid = paramGrid, # Parameters for tunning
+  trControl = ctrl # Parameters of control
+)
+
+
+save(rf.final, file = "my_model2.rda")
+
+```
+
+This are the outputs of the model:
+
+```{r}
+load("my_model2.rda")
+rf.final
+```
+
+We see that the best `Accuracy` is obtained for mtry = `rf.final$bestTune`, so this one is the chosen one.
+
+# Evaluation
+
+Now, we use the `test3` set in order to predict the `classe` variable and evaluate the performance of the model:
+
+```{r}
+rf.pred <- predict(rf.final, test3)
+confusionMatrix(test3$classe, rf.pred)$overall['Accuracy']
+```
+
+# Final prediction
+
+As we don't have the real values for the subjects we cannot check the performance of the evaluation. Anycase, we expect a very good `Accuracy` because we checked it with a part of the train set.
+
+```{r}
+rf.predF <- predict(rf.final, inputs_testPCA)
+data.frame(id = test$user_name, result= rf.predF)
+
+```
+

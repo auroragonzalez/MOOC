@@ -1,0 +1,233 @@
+---
+title: "Assignment: Prediction Assignment Writeup"
+author: "Antonio Maurandi López"
+date: "21 de junio de 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, echo=T, results="asis", cahe=TRUE)
+options(scipen = 1, digits = 3)  # set default digits
+
+library(pander)
+library(caret)
+
+library(devtools)
+# install_github("ujjwalkarn/xda")
+library(xda)
+
+# library(xtable)
+# library("lattice")
+```
+
+Using devices such as _Jawbone Up_, _Nike FuelBand_, and _Fitbit_ it is now possible to collect a large amount of data about personal activity relatively inexpensively. 
+Our goal is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. 
+We will use data  data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants to predict  the "classe" variable.
+
+# Loading and processing the data
+
+
+Exploration of the data.
+
+```{r, cache=TRUE}
+
+# download data from the source url
+filepath     <- "XXXXX"
+filepath     <- "pml-training.csv"
+train <- read.table(filepath,  sep="," , header=T)
+filepath     <- "XXX"
+filepath     <- "pml-testing.csv"
+test <- read.table(filepath,  sep="," , header=T)
+```
+
+## Missing values: `NA` 
+
+There are variables with a lot of `NA` values, we will use only those variables which are not `NA` always, let set the criteria at 80% of data available, not `NA`.
+
+```{r}
+n         <- nrow(train)
+f.numofna <- function (vector){
+    return( sum(is.na (vector)))
+}
+
+x       <- as.vector(apply(train, 2, f.numofna)/n)
+pander(table(x), caption = "Number of variables with a percentaje of missiing values: `0%` or `97%`")
+varsnona <- (x<0.8)
+
+n1    <- length(names(train))
+train <- train[,varsnona]
+test  <- test[,varsnona]
+
+# kk<-lapply(train,data.class)
+# pander(kk)
+n2 <- length(names(train))
+```
+
+We will keep `r n2` variables instead of the original `r n1` variables.
+
+## Outcome variable `classe`
+
+It is interesting to check if there are any class more presnet tahn others
+```{r}
+tt<-table(train$classe)
+pander::pander(tt,caption="absolute frecuency of classes of variebl classe")
+tt<- prop.table(tt)*100
+pander::pander(tt,caption="percentage table")
+
+```
+
+We can see that there are 5 different clasifications and that all of them are arround 16% and 29% of the total data available.
+
+
+```{r, results="asis"}
+pander(numSummary(train)[,-c(7:17)], caption="Preliminary descriptives of numerical variables in the trainning dataset.")
+```
+
+
+```{r, results="asis"}
+pander(charSummary(train), caption="Preliminary descriptives of non numerical variables in the trainning dataset.")
+```
+
+
+## Standaritation
+
+It's interestilng to _scale_ and _center_ the data  it to  get models less influenced by the diferent scale of the predictor variables.
+
+```{r}
+procValues <- preProcess(train, method = c("center", "scale"))
+trainN     <- predict(procValues, train)
+testN      <- predict(procValues, test)
+```
+
+
+We will work with the data set witout the classification variable `classe`.
+
+
+aml! poor aqui voy
+```{r}
+myclasse     <- trainN$classe  # classification/outcome variable
+trainN       <- subset(trainN, select = -c(classe))    
+testN        <- subset(testN , select = -c(problem_id)) 
+```
+
+Now we have a trainning data set with `r ncol(trainN)` variables and `r nrow(trainN)` observations.
+
+
+# Model
+
+## Reduction of dimensionality
+
+By means of PCA we will consider a problem with a lower dimensionality
+
+```{r, eval=FALSE}
+names(trainN)
+precPCA     <- preProcess(trainN, method = "pca",thresh = 0.9)
+trainN_PCA  <- predict(precPCA,  trainN )
+str(trainN_PCA)
+testN_PCA   <- predict(precPCA,  testN )
+```
+
+
+## Cross validation
+
+We will use a 60% training set, 40% prove set of the total data set with clsification (`classe`).
+
+```{r}
+set.seed(pi)
+casostest1  <- createDataPartition(myclasse, p=0.6, list = FALSE)
+str(casostest1)
+
+train1      <- trainN [casostest1,]  # trainning data set
+train2      <- trainN [-casostest1,] # proving data set
+```
+
+
+We will use to build a model a trainning data set of `r nrow(train1)` observations that is the 60% of the data in the origibal trainning dataset. We will test the model in a test data set of `r nrow(train2)`  that is the remaining 40% of the data of the originla trainning dataset.
+
+
+
+
+
+
+
+
+```{r}
+df<- cbind(train1, myclasse[casostest1])
+
+method <- "rf"
+system.time(trainingModel <- train(df$myclasse ~ ., data=df, method="rf"))
+```
+
+
+
+
+
+
+This are the outputs of the model:
+
+```{r, eval=FALSE}
+load("my_model2.rda")
+rf.final
+```
+
+We see that the best `Accuracy` is obtained for mtry = `rf.final$bestTune`, so this one is the chosen one.
+
+
+
+
+
+
+
+## Preprocess
+
+
+```{r, eval=FALSE}
+zero.var   <- nearZeroVar(df1, saveMetrics=TRUE)
+pander(zero.var)
+varswithnonzv <- row.names(zero.var[zero.var$nzv==FALSE,])
+df1<- df1[,varswithnonzv]
+# nrow(df1)
+# ncol(df1)
+# as.data.frame(names(df1))
+classe<- df1$classe
+df1<-df1[,-c(2,5)] # quito dos factotes : nombre y time no se q
+df1$classe<-NULL   # guardamos la var clasificacion (outcome) en otra yu la quitamos del cto de datos
+```
+
+Remove candidate variables with _near zero variance_. 
+Now all variables have enough variance.
+
+
+
+
+# `Ramndom Forest`
+
+```{r, cahe=TRUE, eval=FALSE}
+library(caret)
+set.seed(pi)
+fit.rf <-train(classe~., data=dftrai2, method="rf")
+
+
+
+library(ElemStatLearn)
+data(vowel.train)
+data(vowel.test) 
+set.seed(33833)
+vowel.test$y <- factor(vowel.test$y)
+vowel.train$y <- factor(vowel.train$y)
+suppressMessages(library(caret))
+rfmodel <- suppressMessages(train(y~., data=vowel.train, method="rf"))
+```
+
+
+```{r, eval=FALSE}
+# gbmmodel <- suppressMessages(train(y~., data=vowel.train, method="gbm"))
+
+rf.pred <- predict(fit.rf, dftest[,varsnona])
+# gbm.result <- predict(gbmmodel, vowel.test)
+
+confusionMatrix(dftrai2$classe, rf.pred)$overall['Accuracy']
+```
+
+
+

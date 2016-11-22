@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html class=" is-copy-enabled" lang="en"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <link crossorigin="anonymous" href="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/frameworks-36ca17775aaf860d41122b2071e6e880787a5beb35db9b399.css" integrity="sha256-NsoXd1qvhg1BEisgcebogHh6W+s125s5lBV668ClJ78=" media="all" rel="stylesheet">
+    <link crossorigin="anonymous" href="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/github-4e68832773c118d5af9bdbdf668b7652c3f071362ad1a70119a03.css" integrity="sha256-TmiDJ3PBGNWvm9vfZot2UsPwcTYq0acBGaA6oPNECL8=" media="all" rel="stylesheet">
+    
+    
+    <link crossorigin="anonymous" href="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/site-0996ced1a40a04be84d932b2c830830a2c87259cfb5c41c90ca7fee.css" integrity="sha256-CZbO0aQKBL6E2TKyyDCDCiyHJZz7XEHJDKf+4MWXnp0=" media="all" rel="stylesheet">
+    
+
+    <link as="script" href="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/frameworks-1ffc10688b30831d5f8d09b06e5ea8b731b0dc0ba292c70a82.js" rel="preload">
+    
+    <link as="script" href="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/github-04aabd55e82f7dc6ab9be08a58cbb78a5c67c89257e0a996642b96.js" rel="preload">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width">
+    
+    
+    <title>practical-machine-learning/project-report.Rmd at master · flyingdisc/practical-machine-learning · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" href="https://github.com/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://github.com/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://github.com/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://github.com/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://github.com/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/apple-touch-icon-180x180.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="https://avatars1.githubusercontent.com/u/6227844?v=3&amp;s=400" name="twitter:image:src"><meta content="@github" name="twitter:site"><meta content="summary" name="twitter:card"><meta content="flyingdisc/practical-machine-learning" name="twitter:title"><meta content="practical-machine-learning - Coursera's Data Science Specialization, Practical Machine Learning's project, Prediction Assignment Writeup." name="twitter:description">
+      <meta content="https://avatars1.githubusercontent.com/u/6227844?v=3&amp;s=400" property="og:image"><meta content="GitHub" property="og:site_name"><meta content="object" property="og:type"><meta content="flyingdisc/practical-machine-learning" property="og:title"><meta content="https://github.com/flyingdisc/practical-machine-learning" property="og:url"><meta content="practical-machine-learning - Coursera's Data Science Specialization, Practical Machine Learning's project, Prediction Assignment Writeup." property="og:description">
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    
+    <meta name="pjax-timeout" content="1000">
+    
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host"><meta content="github" name="octolytics-app-id"><meta content="9B36AF25:4A82:2DB4F5:5756F50C" name="octolytics-dimension-request_id">
+
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+        <meta name="expected-hostname" content="github.com">
+      <meta name="js-proxy-site-detection-payload" content="OGZkOGVjZDBhODRjNjg5YTMyMTA5YWEyNjM4NGVmYWE3Y2IwZDU5YThhZGMyN2U5MGUxODJmZTMxMmQzZDAyYnx7InJlbW90ZV9hZGRyZXNzIjoiMTU1LjU0LjE3NS4zNyIsInJlcXVlc3RfaWQiOiI5QjM2QUYyNTo0QTgyOjJEQjRGNTo1NzU2RjUwQyIsInRpbWVzdGFtcCI6MTQ2NTMxNjYyMH0=">
+
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta name="html-safe-nonce" content="b0e1334536e56c52b94903aa0f1a7a399ef95924">
+    <meta content="8bd15a6a8f20d8c8f7d4c9d7de7a37bf3034aeb3" name="form-nonce">
+
+    <meta http-equiv="x-pjax-version" content="81b809bb66678836bc1647df6eed5301">
+    
+
+      
+  <meta name="description" content="practical-machine-learning - Coursera's Data Science Specialization, Practical Machine Learning's project, Prediction Assignment Writeup.">
+  <meta name="go-import" content="github.com/flyingdisc/practical-machine-learning git https://github.com/flyingdisc/practical-machine-learning.git">
+
+  <meta content="6227844" name="octolytics-dimension-user_id"><meta content="flyingdisc" name="octolytics-dimension-user_login"><meta content="35272649" name="octolytics-dimension-repository_id"><meta content="flyingdisc/practical-machine-learning" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="35272649" name="octolytics-dimension-repository_network_root_id"><meta content="flyingdisc/practical-machine-learning" name="octolytics-dimension-repository_network_root_nwo">
+  <link href="https://github.com/flyingdisc/practical-machine-learning/commits/master.atom" rel="alternate" title="Recent Commits to practical-machine-learning:master" type="application/atom+xml">
+
+
+      
+  <meta data-pjax-transient="true" name="selected-link" value="repo_source"><meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" name="analytics-location"><link rel="canonical" href="https://github.com/flyingdisc/practical-machine-learning/blob/master/project-report.Rmd" data-pjax-transient="true"><link data-pjax-transient="true" href="https://github.com/flyingdisc/practical-machine-learning/commits/master.atom" rel="alternate" title="Recent Commits to practical-machine-learning:master" type="application/atom+xml"></head>
+
+
+  <body class="logged-out   env-production linux vis-public">
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div style="width: 100%;" class="progress"></div></div>
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+          <header class="site-header js-details-container" role="banner">
+  <div class="container-responsive">
+    <a class="header-logo-invertocat" href="https://github.com/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+    </a>
+
+    <button class="btn-link right site-header-toggle js-details-target" type="button" aria-label="Toggle navigation">
+      <svg aria-hidden="true" class="octicon octicon-three-bars" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg>
+    </button>
+
+    <div class="site-header-menu">
+      <nav class="site-header-nav site-header-nav-main">
+        <a href="https://github.com/personal" class="js-selected-navigation-item nav-item nav-item-personal" data-ga-click="Header, click, Nav menu - item:personal" data-selected-links="/personal /personal">
+          Personal
+</a>        <a href="https://github.com/open-source" class="js-selected-navigation-item nav-item nav-item-opensource" data-ga-click="Header, click, Nav menu - item:opensource" data-selected-links="/open-source /open-source">
+          Open source
+</a>        <a href="https://github.com/business" class="js-selected-navigation-item nav-item nav-item-business" data-ga-click="Header, click, Nav menu - item:business" data-selected-links="/business /business/features /business/customers /business">
+          Business
+</a>        <a href="https://github.com/explore" class="js-selected-navigation-item nav-item nav-item-explore" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship /explore">
+          Explore
+</a>      </nav>
+
+      <div class="site-header-actions">
+            <a class="btn btn-primary site-header-actions-btn" href="https://github.com/join?source=header-repo" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+          <a class="btn site-header-actions-btn mr-2" href="https://github.com/login?return_to=%2Fflyingdisc%2Fpractical-machine-learning" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+      </div>
+
+        <nav class="site-header-nav site-header-nav-secondary">
+          <a class="nav-item" href="https://github.com/pricing">Pricing</a>
+          <a class="nav-item" href="https://github.com/blog">Blog</a>
+          <a class="nav-item" href="https://help.github.com/">Support</a>
+          <a class="nav-item header-search-link" href="https://github.com/search">Search GitHub</a>
+              <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/flyingdisc/practical-machine-learning/search" class="js-site-search-form" data-scoped-search-url="/flyingdisc/practical-machine-learning/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"></div>
+    <label class="form-control header-search-wrapper js-chromeless-input-container">
+      <div class="header-search-scope">This repository</div>
+      <input class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable" data-hotkey="s" name="q" placeholder="Search" aria-label="Search this repository" data-unscoped-placeholder="Search GitHub" data-scoped-placeholder="Search" tabindex="1" autocapitalize="off" type="text">
+    </label>
+</form></div>
+
+        </nav>
+    </div>
+  </div>
+</header>
+
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+      <div id="js-flash-container">
+</div>
+
+
+    <div role="main" class="main-content">
+        <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode">
+    <div id="js-repo-pjax-container" data-pjax-container="">  
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+
+    
+
+<ul class="pagehead-actions">
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fflyingdisc%2Fpractical-machine-learning" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+    Watch
+  </a>
+  <a class="social-count" href="https://github.com/flyingdisc/practical-machine-learning/watchers">
+    1
+  </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fflyingdisc%2Fpractical-machine-learning" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to star a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="https://github.com/flyingdisc/practical-machine-learning/stargazers">
+      0
+    </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fflyingdisc%2Fpractical-machine-learning" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <svg aria-hidden="true" class="octicon octicon-repo-forked" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+        Fork
+      </a>
+
+    <a href="https://github.com/flyingdisc/practical-machine-learning/network" class="social-count">
+      13
+    </a>
+  </li>
+</ul>
+
+    <h1 class="public ">
+  <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+  <span class="author" itemprop="author"><a href="https://github.com/flyingdisc" class="url fn" rel="author">flyingdisc</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a href="https://github.com/flyingdisc/practical-machine-learning" data-pjax="#js-repo-pjax-container">practical-machine-learning</a></strong>
+
+</h1>
+
+  </div>
+  <div class="container">
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/flyingdisc/practical-machine-learning" aria-selected="true" class="js-selected-navigation-item reponav-item selected" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /flyingdisc/practical-machine-learning" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="https://github.com/flyingdisc/practical-machine-learning/issues" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /flyingdisc/practical-machine-learning/issues" itemprop="url">
+        <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        <span itemprop="name">Issues</span>
+        <span class="counter">0</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/flyingdisc/practical-machine-learning/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /flyingdisc/practical-machine-learning/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="counter">0</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+
+
+  <a href="https://github.com/flyingdisc/practical-machine-learning/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="pulse /flyingdisc/practical-machine-learning/pulse">
+    <svg aria-hidden="true" class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0v2h3.6l.9-1.8.9 5.4L9 8.5l1.6 1.5H14V8z"></path></svg>
+    Pulse
+</a>
+  <a href="https://github.com/flyingdisc/practical-machine-learning/graphs" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors /flyingdisc/practical-machine-learning/graphs">
+    <svg aria-hidden="true" class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+    Graphs
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+
+<a href="https://github.com/flyingdisc/practical-machine-learning/blob/351d18cc3b7cf6b62c751e91a0ef19869067ec30/project-report.Rmd" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+<!-- blob contrib key: blob_contributors:v21:01f7bb8fd771be311778e808335ac5f0 -->
+
+<div class="file-navigation js-zeroclipboard-container">
+  
+<div class="select-menu branch-select-menu js-menu-container js-select-menu left">
+  <button class="btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w" title="master" type="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <i>Branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </button>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax="" aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+        <span class="select-menu-title">Switch branches/tags</span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input aria-label="Filter branches/tags" id="context-commitish-filter-field" class="form-control js-filterable-field js-navigation-enable" placeholder="Filter branches/tags" type="text">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open " href="https://github.com/flyingdisc/practical-machine-learning/blob/gh-pages/project-report.Rmd" data-name="gh-pages" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text" title="gh-pages">
+                gh-pages
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open selected" href="https://github.com/flyingdisc/practical-machine-learning/blob/master/project-report.Rmd" data-name="master" data-skip-pjax="true" rel="nofollow">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <span class="select-menu-item-text css-truncate-target js-select-menu-filter-text" title="master">
+                master
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="btn-group right">
+    <a href="https://github.com/flyingdisc/practical-machine-learning/find/master" class="js-pjax-capture-input btn btn-sm" data-pjax="" data-hotkey="t">
+      Find file
+    </a>
+    <button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button">Copy path</button>
+  </div>
+  <div class="breadcrumb js-zeroclipboard-target">
+    <span class="repo-root js-repo-root"><span class="js-path-segment"><a href="https://github.com/flyingdisc/practical-machine-learning"><span>practical-machine-learning</span></a></span></span><span class="separator">/</span><strong class="final-path">project-report.Rmd</strong>
+  </div>
+</div>
+
+
+  <div class="commit-tease">
+      <span class="right">
+        <a class="commit-tease-sha" href="https://github.com/flyingdisc/practical-machine-learning/commit/f9de2462f7142b3dd1bc7db64341e9fb16dbcba1" data-pjax="">
+          f9de246
+        </a>
+        <relative-time title="19 may. 2015 7:02 CEST" datetime="2015-05-19T05:02:44Z">on 19 May 2015</relative-time>
+      </span>
+      <div>
+        <img alt="@flyingdisc" class="avatar" src="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/6227844.png" width="20" height="20">
+        <a href="https://github.com/flyingdisc" class="user-mention" rel="author">flyingdisc</a>
+          <a href="https://github.com/flyingdisc/practical-machine-learning/commit/f9de2462f7142b3dd1bc7db64341e9fb16dbcba1" class="message" data-pjax="true" title="add markdown">add markdown</a>
+      </div>
+
+    <div class="commit-tease-contributors">
+      <button type="button" class="btn-link muted-link contributors-toggle" data-facebox="#blob_contributors_box">
+        <strong>1</strong>
+         contributor
+      </button>
+      
+    </div>
+
+    <div id="blob_contributors_box" style="display:none">
+      <h2 class="facebox-header" data-facebox-id="facebox-header">Users who have contributed to this file</h2>
+      <ul class="facebox-user-list" data-facebox-id="facebox-description">
+          <li class="facebox-user-list-item">
+            <img alt="@flyingdisc" src="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/6227844_002.png" width="24" height="24">
+            <a href="https://github.com/flyingdisc">flyingdisc</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+
+<div class="file">
+  <div class="file-header">
+  <div class="file-actions">
+
+    <div class="btn-group">
+      <a href="https://github.com/flyingdisc/practical-machine-learning/raw/master/project-report.Rmd" class="btn btn-sm " id="raw-url">Raw</a>
+        <a href="https://github.com/flyingdisc/practical-machine-learning/blame/master/project-report.Rmd" class="btn btn-sm js-update-url-with-hash">Blame</a>
+      <a href="https://github.com/flyingdisc/practical-machine-learning/commits/master/project-report.Rmd" class="btn btn-sm " rel="nofollow">History</a>
+    </div>
+
+
+        <button type="button" class="btn-octicon disabled tooltipped tooltipped-nw" aria-label="You must be signed in to make or propose changes">
+          <svg aria-hidden="true" class="octicon octicon-pencil" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg>
+        </button>
+        <button type="button" class="btn-octicon btn-octicon-danger disabled tooltipped tooltipped-nw" aria-label="You must be signed in to make or propose changes">
+          <svg aria-hidden="true" class="octicon octicon-trashcan" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"></path></svg>
+        </button>
+  </div>
+
+  <div class="file-info">
+      303 lines (245 sloc)
+      <span class="file-info-divider"></span>
+    11.1 KB
+  </div>
+</div>
+
+  
+  <div id="readme" class="readme blob instapaper_body">
+    <article class="markdown-body entry-content" itemprop="text"><table data-table-type="yaml-metadata">
+  <thead>
+  <tr>
+  <th>title</th>
+
+  <th>author</th>
+
+  <th>date</th>
+
+  <th>output</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><div>Practical Machine Learning Project</div></td>
+
+  <td><div>soesilo wijono</div></td>
+
+  <td><div>May 19, 2015</div></td>
+
+  <td><div>html_document</div></td>
+  </tr>
+  </tbody>
+</table>
+
+<h2><a id="user-content-prediction-assignment" class="anchor" href="#prediction-assignment" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Prediction Assignment</h2>
+
+<h3><a id="user-content-background" class="anchor" href="#background" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Background</h3>
+
+<p>Using devices such as JawboneUp, NikeFuelBand, and Fitbitit is now 
+possible to collect a large amount of data about personal activity 
+relatively inexpensively. These type of devices are part of the 
+quantified self movement - a group of enthusiasts who take measurements 
+about themselves regularly to improve their health, to find patterns in
+their behavior, or because they are tech geeks. One thing that people 
+regularly do is quantify how much of a particular activity they do, but 
+they rarely quantify how well they do it.  </p>
+
+<p>In this project, the goal is to use data from accelerometers on the 
+belt, forearm, arm, and dumbell of 6 participants. They were asked to 
+perform barbell lifts correctly and incorrectly in 5 different ways. 
+More information is available from the website: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset).   </p>
+
+<h3><a id="user-content-preparing-the-data-and-r-packages" class="anchor" href="#preparing-the-data-and-r-packages" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Preparing the data and R packages</h3>
+
+<h4><a id="user-content-load-packages-set-caching" class="anchor" href="#load-packages-set-caching" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Load packages, set caching</h4>
+
+<div class="highlight highlight-source-r"><pre>require(<span class="pl-smi">caret</span>)
+require(<span class="pl-smi">corrplot</span>)
+require(<span class="pl-smi">Rtsne</span>)
+require(<span class="pl-smi">xgboost</span>)
+require(<span class="pl-smi">stats</span>)
+require(<span class="pl-smi">knitr</span>)
+require(<span class="pl-smi">ggplot2</span>)
+<span class="pl-e">knitr</span><span class="pl-k">::</span><span class="pl-smi">opts_chunk</span><span class="pl-k">$</span>set(<span class="pl-v">cache</span><span class="pl-k">=</span><span class="pl-c1">TRUE</span>)</pre></div>
+
+<p>For fast and accurate training the model, I choose XGBoost, an 
+implementation of tree-based extreme gradient boosting algorithm. (<em>As
+ discussed in the course's forum, this XGBoost tool is confirmed by 
+course's CTA to be allowed to be used in this assignment project.</em>)   </p>
+
+<h4><a id="user-content-getting-data" class="anchor" href="#getting-data" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Getting Data</h4>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># URL of the training and testing data</span>
+<span class="pl-v">train.url</span> <span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv<span class="pl-pds">"</span></span>
+<span class="pl-v">test.url</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv<span class="pl-pds">"</span></span>
+<span class="pl-c"># file names</span>
+<span class="pl-v">train.name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>./data/pml-training.csv<span class="pl-pds">"</span></span>
+<span class="pl-v">test.name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>./data/pml-testing.csv<span class="pl-pds">"</span></span>
+<span class="pl-c"># if directory does not exist, create new</span>
+<span class="pl-k">if</span> (<span class="pl-k">!</span>file.exists(<span class="pl-s"><span class="pl-pds">"</span>./data<span class="pl-pds">"</span></span>)) {
+  dir.create(<span class="pl-s"><span class="pl-pds">"</span>./data<span class="pl-pds">"</span></span>)
+}
+<span class="pl-c"># if files does not exist, download the files</span>
+<span class="pl-k">if</span> (<span class="pl-k">!</span>file.exists(<span class="pl-smi">train.name</span>)) {
+  download.file(<span class="pl-smi">train.url</span>, <span class="pl-v">destfile</span><span class="pl-k">=</span><span class="pl-smi">train.name</span>, <span class="pl-v">method</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>curl<span class="pl-pds">"</span></span>)
+}
+<span class="pl-k">if</span> (<span class="pl-k">!</span>file.exists(<span class="pl-smi">test.name</span>)) {
+  download.file(<span class="pl-smi">test.url</span>, <span class="pl-v">destfile</span><span class="pl-k">=</span><span class="pl-smi">test.name</span>, <span class="pl-v">method</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>curl<span class="pl-pds">"</span></span>)
+}
+<span class="pl-c"># load the CSV files as data.frame </span>
+<span class="pl-v">train</span> <span class="pl-k">=</span> read.csv(<span class="pl-s"><span class="pl-pds">"</span>./data/pml-training.csv<span class="pl-pds">"</span></span>)
+<span class="pl-v">test</span> <span class="pl-k">=</span> read.csv(<span class="pl-s"><span class="pl-pds">"</span>./data/pml-testing.csv<span class="pl-pds">"</span></span>)
+dim(<span class="pl-smi">train</span>)
+dim(<span class="pl-smi">test</span>)
+names(<span class="pl-smi">train</span>)</pre></div>
+
+<p>The raw training data has 19622 rows of observations and 158 features (predictors). Column <code>X</code>
+ is unusable row number. While the testing data has 20 rows and the same
+ 158 features. There is one column of target outcome named <code>classe</code>.   </p>
+
+<h4><a id="user-content-data-cleaning" class="anchor" href="#data-cleaning" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Data cleaning</h4>
+
+<p>First, extract target outcome (the activity quality) from training 
+data, so now the training data contains only the predictors (the 
+activity monitors).   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># target outcome (label)</span>
+<span class="pl-v">outcome.org</span> <span class="pl-k">=</span> <span class="pl-smi">train</span>[, <span class="pl-s"><span class="pl-pds">"</span>classe<span class="pl-pds">"</span></span>]
+<span class="pl-v">outcome</span> <span class="pl-k">=</span> <span class="pl-smi">outcome.org</span> 
+levels(<span class="pl-smi">outcome</span>)</pre></div>
+
+<p>Outcome has 5 levels in character format.<br>
+Convert the outcome to numeric, because XGBoost gradient booster only recognizes numeric data.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># convert character levels to numeric</span>
+<span class="pl-v">num.class</span> <span class="pl-k">=</span> length(levels(<span class="pl-smi">outcome</span>))
+levels(<span class="pl-smi">outcome</span>) <span class="pl-k">=</span> <span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-smi">num.class</span>
+head(<span class="pl-smi">outcome</span>)</pre></div>
+
+<p>The outcome is removed from training data.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># remove outcome from train</span>
+<span class="pl-smi">train</span><span class="pl-k">$</span><span class="pl-v">classe</span> <span class="pl-k">=</span> <span class="pl-c1">NULL</span></pre></div>
+
+<p>The assignment rubric asks to use data from accelerometers on the <code>belt</code>, <code>forearm</code>, <code>arm</code>, and <code>dumbell</code>, so the features are extracted based on these keywords.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># filter columns on: belt, forearm, arm, dumbell</span>
+<span class="pl-v">filter</span> <span class="pl-k">=</span> grepl(<span class="pl-s"><span class="pl-pds">"</span>belt|arm|dumbell<span class="pl-pds">"</span></span>, names(<span class="pl-smi">train</span>))
+<span class="pl-v">train</span> <span class="pl-k">=</span> <span class="pl-smi">train</span>[, <span class="pl-smi">filter</span>]
+<span class="pl-v">test</span> <span class="pl-k">=</span> <span class="pl-smi">test</span>[, <span class="pl-smi">filter</span>]</pre></div>
+
+<p>Instead of less-accurate imputation of missing data, remove all columns with NA values.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># remove columns with NA, use test data as referal for NA</span>
+<span class="pl-v">cols.without.na</span> <span class="pl-k">=</span> colSums(is.na(<span class="pl-smi">test</span>)) <span class="pl-k">==</span> <span class="pl-c1">0</span>
+<span class="pl-v">train</span> <span class="pl-k">=</span> <span class="pl-smi">train</span>[, <span class="pl-smi">cols.without.na</span>]
+<span class="pl-v">test</span> <span class="pl-k">=</span> <span class="pl-smi">test</span>[, <span class="pl-smi">cols.without.na</span>]</pre></div>
+
+<h3><a id="user-content-preprocessing" class="anchor" href="#preprocessing" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Preprocessing</h3>
+
+<h4><a id="user-content-check-for-featuress-variance" class="anchor" href="#check-for-featuress-variance" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Check for features's variance</h4>
+
+<p>Based on the principal component analysis PCA, it is important that 
+features have maximum variance for maximum uniqueness, so that each 
+feature is as distant as possible (as orthogonal as possible) from the 
+other features.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># check for zero variance</span>
+<span class="pl-v">zero.var</span> <span class="pl-k">=</span> nearZeroVar(<span class="pl-smi">train</span>, <span class="pl-v">saveMetrics</span><span class="pl-k">=</span><span class="pl-c1">TRUE</span>)
+<span class="pl-smi">zero.var</span></pre></div>
+
+<p>There is no features without variability (all has enough variance). So there is no feature to be removed further.  </p>
+
+<h4><a id="user-content-plot-of-relationship-between-features-and-outcome" class="anchor" href="#plot-of-relationship-between-features-and-outcome" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Plot of relationship between features and outcome</h4>
+
+<p>Plot the relationship between features and outcome. From the plot 
+below, each features has relatively the same distribution among the 5 
+outcome levels (A, B, C, D, E).   </p>
+
+<div class="highlight highlight-source-r"><pre>featurePlot(<span class="pl-smi">train</span>, <span class="pl-smi">outcome.org</span>, <span class="pl-s"><span class="pl-pds">"</span>strip<span class="pl-pds">"</span></span>)</pre></div>
+
+<h4><a id="user-content-plot-of-correlation-matrix" class="anchor" href="#plot-of-correlation-matrix" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Plot of correlation matrix</h4>
+
+<p>Plot a correlation matrix between features.<br>
+A good set of features is when they are highly uncorrelated (orthogonal)
+ each others. The plot below shows average of correlation is not too 
+high, so I choose to not perform further PCA preprocessing.   </p>
+
+<div class="highlight highlight-source-r"><pre>corrplot.mixed(cor(<span class="pl-smi">train</span>), <span class="pl-v">lower</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>circle<span class="pl-pds">"</span></span>, <span class="pl-v">upper</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>color<span class="pl-pds">"</span></span>, 
+               <span class="pl-v">tl.pos</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>lt<span class="pl-pds">"</span></span>, <span class="pl-v">diag</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>n<span class="pl-pds">"</span></span>, <span class="pl-v">order</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>hclust<span class="pl-pds">"</span></span>, <span class="pl-v">hclust.method</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>complete<span class="pl-pds">"</span></span>)</pre></div>
+
+<h4><a id="user-content-tsne-plot" class="anchor" href="#tsne-plot" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>tSNE plot</h4>
+
+<p>A tSNE (t-Distributed Stochastic Neighbor Embedding) visualization is
+ 2D plot of multidimensional features, that is multidimensional 
+reduction into 2D plane. In the tSNE plot below there is no clear 
+separation of clustering of the 5 levels of outcome (A, B, C, D, E). So 
+it hardly gets conclusion for manually building any regression equation 
+from the irregularity.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># t-Distributed Stochastic Neighbor Embedding</span>
+<span class="pl-v">tsne</span> <span class="pl-k">=</span> Rtsne(as.matrix(<span class="pl-smi">train</span>), <span class="pl-v">check_duplicates</span><span class="pl-k">=</span><span class="pl-c1">FALSE</span>, <span class="pl-v">pca</span><span class="pl-k">=</span><span class="pl-c1">TRUE</span>, 
+              <span class="pl-v">perplexity</span><span class="pl-k">=</span><span class="pl-c1">30</span>, <span class="pl-v">theta</span><span class="pl-k">=</span><span class="pl-c1">0.5</span>, <span class="pl-v">dims</span><span class="pl-k">=</span><span class="pl-c1">2</span>)
+<span class="pl-v">embedding</span> <span class="pl-k">=</span> as.data.frame(<span class="pl-smi">tsne</span><span class="pl-k">$</span><span class="pl-smi">Y</span>)
+<span class="pl-smi">embedding</span><span class="pl-k">$</span><span class="pl-v">Class</span> <span class="pl-k">=</span> <span class="pl-smi">outcome.org</span>
+<span class="pl-v">g</span> <span class="pl-k">=</span> ggplot(<span class="pl-smi">embedding</span>, aes(<span class="pl-v">x</span><span class="pl-k">=</span><span class="pl-smi">V1</span>, <span class="pl-v">y</span><span class="pl-k">=</span><span class="pl-smi">V2</span>, <span class="pl-v">color</span><span class="pl-k">=</span><span class="pl-smi">Class</span>)) <span class="pl-k">+</span>
+  geom_point(<span class="pl-v">size</span><span class="pl-k">=</span><span class="pl-c1">1.25</span>) <span class="pl-k">+</span>
+  guides(<span class="pl-v">colour</span><span class="pl-k">=</span>guide_legend(<span class="pl-v">override.aes</span><span class="pl-k">=</span><span class="pl-k">list</span>(<span class="pl-v">size</span><span class="pl-k">=</span><span class="pl-c1">6</span>))) <span class="pl-k">+</span>
+  xlab(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>) <span class="pl-k">+</span> ylab(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>) <span class="pl-k">+</span>
+  ggtitle(<span class="pl-s"><span class="pl-pds">"</span>t-SNE 2D Embedding of 'Classe' Outcome<span class="pl-pds">"</span></span>) <span class="pl-k">+</span>
+  theme_light(<span class="pl-v">base_size</span><span class="pl-k">=</span><span class="pl-c1">20</span>) <span class="pl-k">+</span>
+  theme(<span class="pl-v">axis.text.x</span><span class="pl-k">=</span>element_blank(),
+        <span class="pl-v">axis.text.y</span><span class="pl-k">=</span>element_blank())
+print(<span class="pl-smi">g</span>)</pre></div>
+
+<h3><a id="user-content-build-machine-learning-model" class="anchor" href="#build-machine-learning-model" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Build machine learning model</h3>
+
+<p>Now build a machine learning model to predict activity quality (<code>classe</code> outcome) from the activity monitors (the features or predictors) by using XGBoost extreme gradient boosting algorithm.    </p>
+
+<h4><a id="user-content-xgboost-data" class="anchor" href="#xgboost-data" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>XGBoost data</h4>
+
+<p>XGBoost supports only numeric matrix data. Converting all training, testing and outcome data to matrix.  </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># convert data to matrix</span>
+<span class="pl-v">train.matrix</span> <span class="pl-k">=</span> as.matrix(<span class="pl-smi">train</span>)
+mode(<span class="pl-smi">train.matrix</span>) <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>numeric<span class="pl-pds">"</span></span>
+<span class="pl-v">test.matrix</span> <span class="pl-k">=</span> as.matrix(<span class="pl-smi">test</span>)
+mode(<span class="pl-smi">test.matrix</span>) <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>numeric<span class="pl-pds">"</span></span>
+<span class="pl-c"># convert outcome from factor to numeric matrix </span>
+<span class="pl-c">#   xgboost takes multi-labels in [0, numOfClass)</span>
+<span class="pl-v">y</span> <span class="pl-k">=</span> as.matrix(as.integer(<span class="pl-smi">outcome</span>)<span class="pl-k">-</span><span class="pl-c1">1</span>)</pre></div>
+
+<h4><a id="user-content-xgboost-parameters" class="anchor" href="#xgboost-parameters" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>XGBoost parameters</h4>
+
+<p>Set XGBoost parameters for cross validation and training.<br>
+Set a multiclass classification objective as the gradient boosting's learning function.<br>
+Set evaluation metric to <code>merror</code>, multiclass error rate.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># xgboost parameters</span>
+<span class="pl-smi">param</span> <span class="pl-k">&lt;-</span> <span class="pl-k">list</span>(<span class="pl-s"><span class="pl-pds">"</span>objective<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>multi:softprob<span class="pl-pds">"</span></span>,    <span class="pl-c"># multiclass classification </span>
+              <span class="pl-s"><span class="pl-pds">"</span>num_class<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-smi">num.class</span>,    <span class="pl-c"># number of classes </span>
+              <span class="pl-s"><span class="pl-pds">"</span>eval_metric<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>merror<span class="pl-pds">"</span></span>,    <span class="pl-c"># evaluation metric </span>
+              <span class="pl-s"><span class="pl-pds">"</span>nthread<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-c1">8</span>,   <span class="pl-c"># number of threads to be used </span>
+              <span class="pl-s"><span class="pl-pds">"</span>max_depth<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-c1">16</span>,    <span class="pl-c"># maximum depth of tree </span>
+              <span class="pl-s"><span class="pl-pds">"</span>eta<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-c1">0.3</span>,    <span class="pl-c"># step size shrinkage </span>
+              <span class="pl-s"><span class="pl-pds">"</span>gamma<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-c1">0</span>,    <span class="pl-c"># minimum loss reduction </span>
+              <span class="pl-s"><span class="pl-pds">"</span>subsample<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-c1">1</span>,    <span class="pl-c"># part of data instances to grow tree </span>
+              <span class="pl-s"><span class="pl-pds">"</span>colsample_bytree<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-c1">1</span>,  <span class="pl-c"># subsample ratio of columns when constructing each tree </span>
+              <span class="pl-s"><span class="pl-pds">"</span>min_child_weight<span class="pl-pds">"</span></span> <span class="pl-k">=</span> <span class="pl-c1">12</span>  <span class="pl-c"># minimum sum of instance weight needed in a child </span>
+              )</pre></div>
+
+<h4><a id="user-content-expected-error-rate" class="anchor" href="#expected-error-rate" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Expected error rate</h4>
+
+<p>Expected error rate is less than <code>1%</code> for a good 
+classification. Do cross validation to estimate the error rate using 
+4-fold cross validation, with 200 epochs to reach the expected error 
+rate of less than <code>1%</code>.  </p>
+
+<h4><a id="user-content-4-fold-cross-validation" class="anchor" href="#4-fold-cross-validation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>4-fold cross validation</h4>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># set random seed, for reproducibility </span>
+set.seed(<span class="pl-c1">1234</span>)
+<span class="pl-c"># k-fold cross validation, with timing</span>
+<span class="pl-v">nround.cv</span> <span class="pl-k">=</span> <span class="pl-c1">200</span>
+system.time( <span class="pl-smi">bst.cv</span> <span class="pl-k">&lt;-</span> xgb.cv(<span class="pl-v">param</span><span class="pl-k">=</span><span class="pl-smi">param</span>, <span class="pl-v">data</span><span class="pl-k">=</span><span class="pl-smi">train.matrix</span>, <span class="pl-v">label</span><span class="pl-k">=</span><span class="pl-smi">y</span>, 
+              <span class="pl-v">nfold</span><span class="pl-k">=</span><span class="pl-c1">4</span>, <span class="pl-v">nrounds</span><span class="pl-k">=</span><span class="pl-smi">nround.cv</span>, <span class="pl-v">prediction</span><span class="pl-k">=</span><span class="pl-c1">TRUE</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">FALSE</span>) )</pre></div>
+
+<p>Elapsed time is around 150 seconds (2.5 minutes).  </p>
+
+<div class="highlight highlight-source-r"><pre>tail(<span class="pl-smi">bst.cv</span><span class="pl-k">$</span><span class="pl-smi">dt</span>) </pre></div>
+
+<p>From the cross validation, choose index with minimum multiclass error rate.<br>
+Index will be used in the model training to fulfill expected minimum error rate of <code>&lt; 1%</code>.  </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># index of minimum merror</span>
+<span class="pl-v">min.merror.idx</span> <span class="pl-k">=</span> which.min(<span class="pl-smi">bst.cv</span><span class="pl-k">$</span><span class="pl-smi">dt</span>[, <span class="pl-smi">test.merror.mean</span>]) 
+<span class="pl-smi">min.merror.idx</span> 
+<span class="pl-c"># minimum merror</span>
+<span class="pl-smi">bst.cv</span><span class="pl-k">$</span><span class="pl-smi">dt</span>[<span class="pl-smi">min.merror.idx</span>,]</pre></div>
+
+<p>Best cross-validation's minimum error rate <code>test.merror.mean</code> is around 0.006 (0.6%), happened at 106th iteration.   </p>
+
+<h4><a id="user-content-confusion-matrix" class="anchor" href="#confusion-matrix" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Confusion matrix</h4>
+
+<p>Tabulates the cross-validation's predictions of the model against the truths.  </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># get CV's prediction decoding</span>
+<span class="pl-v">pred.cv</span> <span class="pl-k">=</span> <span class="pl-k">matrix</span>(<span class="pl-smi">bst.cv</span><span class="pl-k">$</span><span class="pl-smi">pred</span>, <span class="pl-v">nrow</span><span class="pl-k">=</span>length(<span class="pl-smi">bst.cv</span><span class="pl-k">$</span><span class="pl-smi">pred</span>)<span class="pl-k">/</span><span class="pl-smi">num.class</span>, <span class="pl-v">ncol</span><span class="pl-k">=</span><span class="pl-smi">num.class</span>)
+<span class="pl-v">pred.cv</span> <span class="pl-k">=</span> max.col(<span class="pl-smi">pred.cv</span>, <span class="pl-s"><span class="pl-pds">"</span>last<span class="pl-pds">"</span></span>)
+<span class="pl-c"># confusion matrix</span>
+confusionMatrix(<span class="pl-k">factor</span>(<span class="pl-smi">y</span><span class="pl-k">+</span><span class="pl-c1">1</span>), <span class="pl-k">factor</span>(<span class="pl-smi">pred.cv</span>))</pre></div>
+
+<p>Confusion matrix shows concentration of correct predictions is on the diagonal, as expected.  </p>
+
+<p>The average accuracy is <code>99.38%</code>, with error rate is <code>0.62%</code>. So, expected error rate of less than <code>1%</code> is fulfilled.  </p>
+
+<h4><a id="user-content-model-training" class="anchor" href="#model-training" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Model training</h4>
+
+<p>Fit the XGBoost gradient boosting model on all of the training data.   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># real model fit training, with full data</span>
+system.time( <span class="pl-smi">bst</span> <span class="pl-k">&lt;-</span> xgboost(<span class="pl-v">param</span><span class="pl-k">=</span><span class="pl-smi">param</span>, <span class="pl-v">data</span><span class="pl-k">=</span><span class="pl-smi">train.matrix</span>, <span class="pl-v">label</span><span class="pl-k">=</span><span class="pl-smi">y</span>, 
+                           <span class="pl-v">nrounds</span><span class="pl-k">=</span><span class="pl-smi">min.merror.idx</span>, <span class="pl-v">verbose</span><span class="pl-k">=</span><span class="pl-c1">0</span>) )</pre></div>
+
+<p>Time elapsed is around 35 seconds.  </p>
+
+<h4><a id="user-content-predicting-the-testing-data" class="anchor" href="#predicting-the-testing-data" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Predicting the testing data</h4>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># xgboost predict test data using the trained model</span>
+<span class="pl-smi">pred</span> <span class="pl-k">&lt;-</span> predict(<span class="pl-smi">bst</span>, <span class="pl-smi">test.matrix</span>)  
+head(<span class="pl-smi">pred</span>, <span class="pl-c1">10</span>)  </pre></div>
+
+<h4><a id="user-content-post-processing" class="anchor" href="#post-processing" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Post-processing</h4>
+
+<p>Output of prediction is the predicted probability of the 5 levels (columns) of outcome.<br>
+Decode the quantitative 5 levels of outcomes to qualitative letters (A, B, C, D, E).   </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># decode prediction</span>
+<span class="pl-v">pred</span> <span class="pl-k">=</span> <span class="pl-k">matrix</span>(<span class="pl-smi">pred</span>, <span class="pl-v">nrow</span><span class="pl-k">=</span><span class="pl-smi">num.class</span>, <span class="pl-v">ncol</span><span class="pl-k">=</span>length(<span class="pl-smi">pred</span>)<span class="pl-k">/</span><span class="pl-smi">num.class</span>)
+<span class="pl-v">pred</span> <span class="pl-k">=</span> t(<span class="pl-smi">pred</span>)
+<span class="pl-v">pred</span> <span class="pl-k">=</span> max.col(<span class="pl-smi">pred</span>, <span class="pl-s"><span class="pl-pds">"</span>last<span class="pl-pds">"</span></span>)
+<span class="pl-v">pred.char</span> <span class="pl-k">=</span> toupper(<span class="pl-c1">letters</span>[<span class="pl-smi">pred</span>])</pre></div>
+
+<p>(<em>The prediction result <code>pred.char</code> is not displayed intentionally due to Honour Code, because it is the answer of the "project submission" part.</em>)   </p>
+
+<h4><a id="user-content-feature-importance" class="anchor" href="#feature-importance" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Feature importance</h4>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c"># get the trained model</span>
+<span class="pl-v">model</span> <span class="pl-k">=</span> xgb.dump(<span class="pl-smi">bst</span>, <span class="pl-v">with.stats</span><span class="pl-k">=</span><span class="pl-c1">TRUE</span>)
+<span class="pl-c"># get the feature real names</span>
+<span class="pl-v">names</span> <span class="pl-k">=</span> dimnames(<span class="pl-smi">train.matrix</span>)[[<span class="pl-c1">2</span>]]
+<span class="pl-c"># compute feature importance matrix</span>
+<span class="pl-v">importance_matrix</span> <span class="pl-k">=</span> xgb.importance(<span class="pl-smi">names</span>, <span class="pl-v">model</span><span class="pl-k">=</span><span class="pl-smi">bst</span>)
+
+<span class="pl-c"># plot</span>
+<span class="pl-v">gp</span> <span class="pl-k">=</span> xgb.plot.importance(<span class="pl-smi">importance_matrix</span>)
+print(<span class="pl-smi">gp</span>) </pre></div>
+
+<p>Feature importance plot is useful to select only best features with 
+highest correlation to the outcome(s). To improve model fitting 
+performance (time or overfitting), less important features can be 
+removed.   </p>
+
+<h3><a id="user-content-creating-submission-files" class="anchor" href="#creating-submission-files" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg></a>Creating submission files</h3>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-v">path</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>./answer<span class="pl-pds">"</span></span>
+<span class="pl-v">pml_write_files</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">x</span>) {
+    <span class="pl-v">n</span> <span class="pl-k">=</span> length(<span class="pl-smi">x</span>)
+    <span class="pl-k">for</span>(<span class="pl-smi">i</span> <span class="pl-k">in</span> <span class="pl-c1">1</span><span class="pl-k">:</span> <span class="pl-smi">n</span>) {
+        <span class="pl-v">filename</span> <span class="pl-k">=</span> paste0(<span class="pl-s"><span class="pl-pds">"</span>problem_id_<span class="pl-pds">"</span></span>, <span class="pl-smi">i</span>, <span class="pl-s"><span class="pl-pds">"</span>.txt<span class="pl-pds">"</span></span>)
+        write.table(<span class="pl-smi">x</span>[<span class="pl-smi">i</span>], <span class="pl-v">file</span><span class="pl-k">=</span>file.path(<span class="pl-smi">path</span>, <span class="pl-smi">filename</span>), 
+                    <span class="pl-v">quote</span><span class="pl-k">=</span><span class="pl-c1">FALSE</span>, <span class="pl-v">row.names</span><span class="pl-k">=</span><span class="pl-c1">FALSE</span>, <span class="pl-v">col.names</span><span class="pl-k">=</span><span class="pl-c1">FALSE</span>)
+    }
+}
+pml_write_files(<span class="pl-smi">pred.char</span>)</pre></div>
+
+<hr>
+</article>
+  </div>
+
+</div>
+
+<button type="button" data-facebox="#jump-to-line" data-facebox-class="linejump" data-hotkey="l" class="hidden">Jump to Line</button>
+<div id="jump-to-line" style="display:none">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="" class="js-jump-to-line-form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"></div>
+    <input class="form-control linejump-input js-jump-to-line-field" placeholder="Jump to line…" aria-label="Jump to line" autofocus="" type="text">
+    <button type="submit" class="btn">Go</button>
+</form></div>
+
+  </div>
+  <div class="modal-backdrop"></div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+  </div>
+
+    </div>
+
+        <div class="container site-footer-container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com/" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+    <ul class="site-footer-links">
+      <li>© 2016 <span title="0.06785s from github-fe126-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+        <li><a href="https://help.github.com/" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+
+    <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+      </button>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      
+      <script crossorigin="anonymous" integrity="sha256-H/wQaIswgx1fjQmwbl6otzGw3AuikscKgmQirpYJF50=" src="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/frameworks-1ffc10688b30831d5f8d09b06e5ea8b731b0dc0ba292c70a82.js"></script>
+      <script async="async" crossorigin="anonymous" integrity="sha256-BKq9Vegvfcarm+CKWMu3ilxnyJJX4KmWZCuW0DSaqhE=" src="practical-machine-learning_project-report.Rmd%20at%20master%20%C2%B7%20flyingdisc_practical-machine-learning%20%C2%B7%20GitHub_files/github-04aabd55e82f7dc6ab9be08a58cbb78a5c67c89257e0a996642b96.js"></script>
+      
+      
+      
+      
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner hidden">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    </div>
+    <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+  </div>
+</div>
+
+  
+
+
+</body></html>

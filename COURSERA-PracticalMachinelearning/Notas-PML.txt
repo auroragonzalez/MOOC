@@ -1,0 +1,39 @@
+Practical Machine Learning
+by Jeff Leek, PhD, Roger D. Peng, PhD, Brian Caffo, PhD
+
+<https://class.coursera.org/predmachlearn-033>
+
+## Points and scoring
+
+There are 100 available points for the course. They are broken down as follows
+
+- Quiz 1 = 15 points
+- Quiz 2 = 15 points
+- Quiz 3 = 15 points
+- Quiz 4 = 15 points
+- Course project
+    + Course Project Writeup (peer-assessed) = 20 points
+    + Course Project Submission (programming) = 20 points
+
+You must receive 70 points to pass the course and achieve the certificate and 90 points to earn distinction.
+If you submit any time after the hard deadline, you will not receive credit.
+
+## Quizzes
+
+### Quiz 1
+
+
+### Quiz 2
+
+
+### Quiz 3
+
+
+### Quiz 4
+
+
+Peer Assessments Submissions due by the end of Week 3 
+Peer Assessments Evaluation starts at the beginning of Week 4
+Assignments Submission due on XXXXXX (2 weeks, 6 days) 
+
+

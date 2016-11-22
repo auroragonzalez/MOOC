@@ -1,0 +1,22 @@
+library(ElemStatLearn)
+data(vowel.train)
+data(vowel.test) 
+
+set.seed(33833)
+
+head(vowel.test)
+
+vowel.test$y <- factor(vowel.test$y)
+vowel.train$y <- factor(vowel.train$y)
+str(vowel.test)
+str(vowel.train)
+
+
+suppressMessages(library(caret))
+rfmodel <- suppressMessages(train(y~., data=vowel.train, method="rf"))
+gbmmodel <- suppressMessages(train(y~., data=vowel.train, method="gbm"))
+
+rf.result <- predict(rfmodel, vowel.test)
+gbm.result <- predict(gbmmodel, vowel.test)
+
+confusionMatrix(vowel.test$y, rf.result)$overall['Accuracy']

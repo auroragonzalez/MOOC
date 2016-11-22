@@ -1,0 +1,17 @@
+# 1
+
+a) RF Accuracy = 0.9881
+	GBM Accuracy = 0.8371
+	Agreement Accuracy = 0.9983
+
+b) RF Accuracy = 0.6082
+	GBM Accuracy = 0.5152
+	Agreement Accuracy = 0.5152
+
+c) RF Accuracy = 0.9987
+	GBM Accuracy = 0.5152
+	Agreement Accuracy = 0.9985
+
+d) RF Accuracy = 0.6082
+	GBM Accuracy = 0.5152
+	Agreement Accuracy = 0.6361

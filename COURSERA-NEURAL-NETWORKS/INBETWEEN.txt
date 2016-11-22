@@ -1,0 +1,2 @@
+Why are handwritten programs inapproapiate for solving machine learning tasks such as 3D object recognition?
+THERE ARE TOO MANY POSSIBLE VARIATIONS OF INPUT/OUTPUT

@@ -1,0 +1,178 @@
+---
+title: "Assignment: Prediction Assignment Writeup"
+author: "Antonio Maurandi López"
+date: "7 de junio de 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, echo=T, results="asis", cahe=TRUE)
+options(scipen = 1, digits = 3)  # set default digits
+
+library(pander)
+library(caret)
+
+# library(xtable)
+# library("lattice")
+```
+
+Using devices such as _Jawbone Up_, _Nike FuelBand_, and _Fitbit_ it is now possible to collect a large amount of data about personal activity relatively inexpensively. 
+
+Our goal is to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. 
+
+
+# Loading and processing the data
+
+
+Exploration of the data and data structure.
+
+```{r, cache=TRUE}
+
+# download data from the source url
+filepath     <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+filepath     <- "pml-training.csv"
+dftr <- read.table(filepath,  sep="," , header=T)
+filepath     <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+filepath     <- "pml-testing.csv"
+dfte <- read.table(filepath,  sep="," , header=T)
+```
+
+## Missing values: `NA` 
+
+There are variables with a lot of `NA` values, we will use only those variables which are not `NA` always, let set the criteria at 80% of data available, not `NA`.
+
+```{r}
+n         <- nrow(dftr)
+f.numofna <- function (vector){
+    return( sum(is.na (vector)))
+}
+
+x       <- as.vector(apply(dftr, 2, f.numofna)/n)
+table(x)
+varsnona <- (x<0.8)
+
+
+jj<- dftr[,varsnona]
+
+kk<-lapply(jj,data.class)
+# pander::pander(kk)
+pander(kk)
+dftr2 <- dftr[,varsnona]
+n1<- length(names(dftr))
+n2<- length(names(dftr2))
+```
+
+We will keep `r n2` variables instead of the original `r n1` variables.
+
+
+It is interesting to check if there are any class more presnet tahn others
+```{r}
+tt<-table(dftr2$classe)
+pander::pander(tt,caption="absolute frecuency of classes of variebl classe")
+tt<- prop.table(tt)*100
+pander::pander(tt,caption="percentage table")
+
+```
+
+We can see that there are 5 different clasifications and that all of them are arround 16% and 29%
+
+
+# Classification
+
+
+# Trainning and prove data sets
+
+
+We will use a 60% training set, 40% prove set of the total data set with clsification (`classe`).
+
+```{r}
+set.seed(pi)
+indices  <- createDataPartition(dftr2$classe, p=0.6)
+
+df1 <- dftr2[indices[[1]],] # trainning data set
+df2 <- dftr2[-indices[[1]],] # proving data set
+```
+
+
+
+## Preprocess
+
+
+```{r}
+zero.var   <- nearZeroVar(df1, saveMetrics=TRUE)
+pander(zero.var)
+varswithnonzv <- row.names(zero.var[zero.var$nzv==FALSE,])
+df1<- df1[,varswithnonzv]
+# nrow(df1)
+# ncol(df1)
+# as.data.frame(names(df1))
+classe<- df1$classe
+df1<-df1[,-c(2,5)] # quito dos factotes : nombre y time no se q
+df1$classe<-NULL   # guardamos la var clasificacion (outcome) en otra yu la quitamos del cto de datos
+```
+
+Remove candidate variables with _near zero variance_. 
+Now all variables have enough variance.
+
+
+```{r}
+require(corrplot)
+corrplot.mixed(cor(df1), lower="circle", upper="color", 
+               tl.pos="lt", diag="n", order="hclust", hclust.method="complete")
+```
+
+```{r, eval=FALSE}
+featurePlot(df1, classe,  "ellipse")# sale una kk
+```
+
+
+```{r, eval=FALSE}
+
+# esto es tela, se come el pc por los pies
+# t-Distributed Stochastic Neighbor Embedding
+tsne = Rtsne(as.matrix(df1), check_duplicates=FALSE, pca=TRUE, 
+              perplexity=30, theta=0.5, dims=2)
+embedding = as.data.frame(tsne$Y)
+embedding$Class = class
+g = ggplot(embedding, aes(x=V1, y=V2, color=Class)) +
+  geom_point(size=1.25) +
+  guides(colour=guide_legend(override.aes=list(size=6))) +
+  xlab("") + ylab("") +
+  ggtitle("t-SNE 2D Embedding of 'Classe' Outcome") +
+  theme_light(base_size=20) +
+  theme(axis.text.x=element_blank(),
+        axis.text.y=element_blank())
+print(g)
+```
+
+
+# `Ramndom Forest`
+
+```{r, cahe=TRUE, eval=FALSE}
+library(caret)
+set.seed(pi)
+fit.rf <-train(classe~., data=dftr2, method="rf")
+
+
+
+library(ElemStatLearn)
+data(vowel.train)
+data(vowel.test) 
+set.seed(33833)
+vowel.test$y <- factor(vowel.test$y)
+vowel.train$y <- factor(vowel.train$y)
+suppressMessages(library(caret))
+rfmodel <- suppressMessages(train(y~., data=vowel.train, method="rf"))
+```
+
+
+```{r, eval=FALSE}
+# gbmmodel <- suppressMessages(train(y~., data=vowel.train, method="gbm"))
+
+rf.pred <- predict(fit.rf, dftest[,varsnona])
+# gbm.result <- predict(gbmmodel, vowel.test)
+
+confusionMatrix(dftrai2$classe, rf.pred)$overall['Accuracy']
+```
+
+

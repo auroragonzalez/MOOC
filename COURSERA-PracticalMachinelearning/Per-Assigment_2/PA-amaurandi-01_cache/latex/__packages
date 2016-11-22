@@ -1,0 +1,8 @@
+base
+pander
+lattice
+ggplot2
+caret
+devtools
+xda
+randomForest
